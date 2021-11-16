@@ -10,20 +10,14 @@
 #include "TB6612.h"    //class Motor
 #include "back_wheels.h"
 
-#define PWM_A 4
-#define PWM_B 5
+#define PWM_A 27
+#define PWM_B 22
 
 Back_Wheels :: Back_Wheels(){
-	forward_A = true;
-	forward_B = true;
-	turning_offset=0;
-	speed=0;
-	pwm = PCA9685();
-	value=0;
-//	left_wheel.pwm  = this->pwm.write(PWM_A, 0, int(this->pwm.map(value, 0, 100, 0, 4095)));
-//	right_wheel.pwm = this->pwm.write(PWM_B, 0, int(this->pwm.map(value, 0, 100, 0, 4095)));
-	speed = 0;
-}
+
+//	left_wheel.setpwm = this->pwm.write(PWM_A, 0, int(this->pwm.map(value, 0, 100, 0, 4095)));
+//	right_wheel.setpwm = this->pwm.write(PWM_B, 0, int(this->pwm.map(value, 0, 100, 0, 4095)));
+	}
 
 void Back_Wheels :: forward(){
 	this->left_wheel.forward();
@@ -157,8 +151,6 @@ Back_Wheels :: ~Back_Wheels(){
 			printf("motores DC parados");
 		}
 	}
-
-
 
 int main_back_wheels(void){
 	printf("main 1\n");

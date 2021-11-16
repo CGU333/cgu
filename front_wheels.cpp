@@ -10,15 +10,7 @@
 #include "front_wheels.h"
 
 	Front_Wheels :: Front_Wheels(uint8_t chnl){
-		_turning_offset=0;
 		channel=chnl;
-		turning_max = 45;
-		cali_turning_offset=0;
-		min_angle=0;
-		max_angle=180;
-		straight_angle = 90;
-		//wheel.channel=0;  //no hace falta inicializar aqui ya que se inicializa en el .h
-		//wheel.address=0x40;
 	}
 
 	void Front_Wheels :: turn_left(){
@@ -61,6 +53,7 @@
 		this->turning_max = angle;
 		this->min_angle = this->straight_angle - angle;
 		this->max_angle = this->straight_angle + angle;
+
 		//angle[3]={min_angle, straight_angle, max_angle};
 		this->angle[0]=min_angle;
 		this->angle[1]=straight_angle;

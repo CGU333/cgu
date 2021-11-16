@@ -58,7 +58,7 @@ uint8_t PCF8591 :: A1(){  // lectura I2C de la direccion 0x42
 	return this->read(1);
 }
 uint8_t PCF8591 :: A2(){  // lectura I2C de la direccion 0x41
-    return this->read(3); //o
+    return this->read(3);
 }
 
 /*
@@ -152,7 +152,7 @@ void PCF8591 :: test(){
 
 int main_PCF8591(void){
 	printf("main 1\n");
-	PCF8591 Objeto(0x48);
+	PCF8591 Objeto= PCF8591(0x48);
 	//miObjeto.__init__();
 	printf("main 2\n");
     try {

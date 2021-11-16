@@ -35,12 +35,9 @@ class PCF8591{
 
 	void test();             //ejemplo para comprobar funcionamiento de este modulo
 
-	//std::vector<uint8_t> analog_result(); //vectores explicados por Victor en el laboratorio de instrumentacion --> en c++ mejor usar vectores que arrays
+	         //std::vector<uint8_t> analog_result(); //vectores, explicado por Victor en laboratorio de instrumentacion --> en c++ mejor usar vectores que arrays
 	vector<uint8_t> analog_result();  //no hace falta poner std:: como en a linea anterior al definir arriba "using namespace std"
 	vector<bool> digital_result();
-
-
-
 
 	//destructor de clase
 	~PCF8591();        //destructor de la clase PCF8591

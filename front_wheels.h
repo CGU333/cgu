@@ -32,29 +32,27 @@ public:
 	void turn(uint8_t angle);
 	uint8_t getchannel();
 	void setchannel(uint8_t chn);
-
 	uint8_t get_turning_max();
 	void set_turning_max(uint8_t angle);
 	uint8_t get_turning_offset();
 	void set_turning_offset(uint8_t value);
-
-	void ready();
-	void calibration();
-	void cali_left();
-	void cali_right();
-	void cali_ok();
 	void test();
 
-	uint8_t channel;  //  1 - 16
-	Servo wheel = Servo(0, 0, 1, 0x40);
-	uint8_t angle[3] = {0, 90, 180};
+	//void ready();
+	//void calibration();
+	//void cali_left();
+	//void cali_right();
+	//void cali_ok();
 
-	uint8_t cali_turning_offset;
-	uint8_t _turning_offset;
-	uint8_t turning_max;
-	uint8_t straight_angle;
-	uint8_t min_angle;
-	uint8_t max_angle;
+	uint8_t channel;  //  1 - 16
+	Servo wheel = Servo(FRONT_WHEEL_CHANNEL, 0, 1, 0x40); // 1er parametro es channel
+	uint8_t angle[3] = {0, 90, 180};
+	uint8_t cali_turning_offset=0;
+	uint8_t _turning_offset=0;
+	uint8_t turning_max=45;
+	uint8_t straight_angle=90;
+	uint8_t min_angle=0;
+	uint8_t max_angle=180;
 };
 
 #endif /* FRONT_WHEELS_H_ */

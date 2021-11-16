@@ -20,12 +20,11 @@ using namespace std; //para evitar poner std:: en cada definicion de vectores
 
 #include "PCA9685.h"
 #include "TB6612.h"
+#define CHANNEL_MOTOR_A  17  //channel
+#define CHANNEL_MOTOR_B  18
+
 
 class Back_Wheels{
-
-#define CHANNEL_MOTOR_A  17
-#define CHANNEL_MOTOR_B  27
-
 	public:
 		Back_Wheels();
 		//void set_a_pwm(value)
@@ -39,20 +38,16 @@ class Back_Wheels{
 		~Back_Wheels();
 		 //aqui irian los metodos de calibracion
 
-		uint8_t turning_offset;
-		int speed;
+		uint8_t turning_offset=0;
+		int speed=0;
 		bool forward_A=true;
 		bool forward_B=true;
-		uint8_t value;
+		uint8_t value =0;
 
-		PCA9685 pwm;
+		PCA9685 pwm = PCA9685 (0x40);
 
-		Motor left_wheel = Motor(CHANNEL_MOTOR_A, 0, forward_A);
+		Motor left_wheel= Motor(CHANNEL_MOTOR_A, 0, forward_A);
 		Motor right_wheel= Motor(CHANNEL_MOTOR_B, 0, forward_B);
-
-
-
-
 };
 
 #endif /* BACK_WHEELS_H_ */

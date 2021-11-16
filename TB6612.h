@@ -31,20 +31,17 @@ class Motor{
 		void stop();
 		bool getoffset();
 		void setoffset(bool offset);
-		float getpwm();
-		void setpwm(float value);
+		uint8_t getpwm();
+		void setpwm(uint8_t value);
 		~Motor();
-		//int getdebug(Motor, char)
-		//void setdebug(Motor, char)
 
-		uint8_t direction_channel;
+		uint8_t direction_channel; // PWM0 o PWM1
 		int forward_offset;
 		int backward_offset;
-		int speed;
-		float pwm;
+		int speed=0;
+		uint8_t pwm;
 		bool offset;
 
-		//char mensaje;      //del metodo debug, no se va a utilizar
 };
 
 #endif /* TB6612_H_ */
