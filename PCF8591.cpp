@@ -41,7 +41,6 @@ uint8_t PCF8591 :: read(uint8_t channel){ // channel = 0 o 1 o 2 o 3
 
 	//pasar el canal como el valor entero de un array (0,1,2,...) ademas de encapsular, facilita la forma de indicar las direcciones
 	sendBuf[0] = 0x40 | channel; //para leer, primero se comprueba no hay error al escribir en el canal indicado
-
 	if((errCode = bcm2835_i2c_write(sendBuf,1)))  //lectura de tipo char
 		printf("bcm2835_i2c_write failed at %s%d, errCode = 0x%x\n",__FILE__,__LINE__, errCode);
 	char byte;

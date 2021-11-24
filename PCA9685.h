@@ -6,7 +6,21 @@
  *  Created on: 29 Oct 2021
  *      Author: carlos
  */
+#include <unistd.h>        //Needed for I2C port
+#include <fcntl.h>          //Needed for I2C port
+#include <sys/ioctl.h>      //Needed for I2C port
+#include <linux/i2c-dev.h>  //Needed for I2C port
+#include <linux/i2c.h>      //Needed for I2C port
+//https://stackoverflow.com/questions/55976683/read-a-block-of-data-from-a-specific-registerfifo-using-c-c-and-i2c-in-raspb
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <cerrno>
+#include <cstdint>
+#include <cstring>
 
+
+#include <time.h>
 #include <unistd.h>
 #include <ctime>
 #include <cstdio>
@@ -48,9 +62,7 @@ using namespace std; //para evitar poner std:: en cada definicion de vectores
 #define PCA9685_PRESCALE_MIN 3   /**< minimum prescale value */
 #define PCA9685_PRESCALE_MAX 255 /**< maximum prescale value */
 
-#define _MIN_PULSE_WIDTH 500    // the shortest pulse sent to a servo(0 degree)
-#define _MAX_PULSE_WIDTH 2500   // the longest pulse sent to a servo (180 degrees)
-#define _DEFAULT_PULSE_WIDTH 1500   // default pulse width when servo is attached (90 degrees)
+
 
 //https://programmerclick.com/article/1519244875/
 //http://circuitden.com/blog/16
@@ -63,7 +75,6 @@ using namespace std; //para evitar poner std:: en cada definicion de vectores
 class PCA9685{
 	public:
 			PCA9685(uint8_t address=PCA9685_I2C_ADDRESS);
-			PCA9685(uint8_t address, float freq);
 
 			void setup(void);
 			void inicializar_i2c();
@@ -72,8 +83,8 @@ class PCA9685{
 			void set_PWM_freq(float freq);
 			float get_PWM_freq();
 
-			void write (uint8_t registro, uint32_t pulseWidth);
-			void write (uint8_t registro, uint16_t on, uint16_t off);
+			void write_pulse (uint8_t registro, uint32_t pulseWidth);
+			void write_PWM (uint8_t registro, uint16_t on, uint16_t off);
 
 			void write_all_value (uint16_t on, uint16_t off);
 			uint8_t map(int x, int in_min, int in_max, int out_min, int out_max);
@@ -84,19 +95,15 @@ class PCA9685{
 
 	private:
 		uint8_t addr;
-		uint32_t T;  //PWM Period[us]
-		char sendBuf[5]={0}; // Inicializamos todos los valores a 0 (3 es la longitud total del array de chars)
+		//	char Buffer[5]; // Inicializamos todos los valores a 0 (3 es la longitud total del array de chars)
 		uint8_t errCode=0;
-		uint16_t _min_pulse_width;
-		uint16_t _max_pulse_width;
-
+		uint8_t T;
 		uint8_t read_byte_data(uint8_t registro);
 		void write_byte_data(uint8_t registro, uint8_t d);
 		//void check_i2c_issues();  //este metodo solo busca errores en i2c. no necesario por el momento
 
-
+		int8_t readByte(uint8_t regAddr, uint8_t *data);
 
 };
-
 
 #endif /* PCA9685_H_ */

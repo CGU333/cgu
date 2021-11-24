@@ -11,16 +11,31 @@
 #include "servo.h"
 #include "TB6612.h"
 #include "../src/PCF8591.h"
-
+	//https://franciscomoya.gitbooks.io/taller-de-raspberry-pi/content/es/c/gpio.html
 int main(void) {
-//	Servo miservo = Servo(0,0,1,0x40);
-//	miservo.test();
-PCA9685 miPCA = PCA9685();
-	//main_PCA9685();
 
-	//Front_Wheels misRuedasDelanteras(0); //cnhl=0 para ruedas delanteras
-	//misRuedasDelanteras.wheel.pwm.setup(); //dentro de Front_Wheels > Servo > PCA9685
-	//misRuedasDelanteras.test();
+	printf(" *** INICIANDO PCA9685 SETUP *** \n");
+	Servo miservo = Servo();
+	printf(" *** INICIANDO SERVO test *** \n");
+	miservo.test();
+	printf("\n ***  test SERVO FINALIZADO*** \n");
+
+/*
+	printf(" *** INICIANDO MOTORES test *** \n");
+	Motor motorA = Motor(23);  // motorDC 1  en canal 23  (address=0x40)
+	Motor motorB = Motor(24);  // motorDC 2  en canal 24 (address=0x40)
+
+	bcm2835_gpio_fsel(27,BCM2835_GPIO_FSEL_OUTP);
+	bcm2835_gpio_fsel(22,BCM2835_GPIO_FSEL_OUTP);
+	motorA.setpwm(27, 60);
+	motorB.setpwm(22, 60);
+
+		for(int v = 0;;v = !v) {
+			bcm2835_gpio_write(27, v);
+			bcm2835_gpio_write(22, v);
+			bcm2835_delay(1000);
+	    }
+*/
 	return 0;
 }
 
